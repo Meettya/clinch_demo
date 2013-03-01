@@ -31,6 +31,23 @@ errorHandler = (err, req, res, next) ->
   res.render 'error',  error: err 
 
 
+get_pack_config = (root_path, filename) ->
+
+  switch filename
+    when 'printer'
+      bundle : 
+        main : path.join root_path, "src", filename
+    when 'formatter'
+      biltin_path = path.join root_path, "node_modules", "browser-resolve", "builtin"  
+
+      bundle : 
+        main : path.join root_path, "src", filename
+      replacement :
+        util : path.join root_path, "web_modules", "util_shim"
+
+    else
+      throw Error "dont know #{filename} settings"
+
 ###
 This function create developer server to work with project or docs
 ###
@@ -70,10 +87,8 @@ dev_server = (bundle_name, root_path, done) ->
   app.get "/js/:js_name", (req, res, next) ->
     [filename, ext] = req.param('js_name').split '.'
 
-    pack_config = 
-      bundle : 
-        main : path.join root_path, "src", filename
-
+    pack_config = get_pack_config root_path, filename
+    
     packer.buldPackage bundle_name, pack_config, (err, data) ->
       if err
         next err

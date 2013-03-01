@@ -46,7 +46,7 @@
 (function() {
 
   head.js({
-    clinch_demo: "js/printer.js?" + (+new Date())
+    clinch_demo: "js/formatter.js?" + (+new Date())
   });
 
 }).call(this);
@@ -66,9 +66,9 @@
 
   head.ready("clinch_demo", function() {
     return $(function() {
-      var printer, res;
-      printer = clinch_demo.main.printer;
-      res = printer('Mr. %s have acount #%010s with $%.2f', 'Jonh Smith', 4477, 788.22798798);
+      var formatter, res;
+      formatter = clinch_demo.main.formatter;
+      res = formatter('Mr. %s have acount #%d with $%d', 'Jonh Smith', 4477, 788.22798798);
       return show_data(res);
     });
   });
@@ -80,13 +80,13 @@
       <div class="span8">
         <h4>Пример использования printf функции</h4>
         <p>Подгрузив на страницу собранный с помощью  <strong>clinch</strong> бандл, можно извлечь из него нужную нам функцию так:</p>
-        <pre class="prettyprint">{printer} = clinch_demo.main</pre>
+        <pre class="prettyprint">{formatter} = clinch_demo.main</pre>
         <p>
            
           Далее просто используем ее для вывода информации
         </p>
         <div class="printer_code">
-          <pre class="prettyprint">printer 'Mr. %s have acount #%010s with $%.2f', 'Jonh Smith' , 4477, 788.22798798</pre>
+          <pre class="prettyprint">formatter 'Mr. %s have acount #%d with $%d', 'Jonh Smith' , 4477, 788.22798798</pre>
         </div>
         <p>
            

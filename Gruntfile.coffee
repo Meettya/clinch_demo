@@ -13,11 +13,12 @@ browser_result_dir = path.join root_path, 'browser'
 
 module.exports = (grunt) ->
 
+  grunt.registerTask 'browser', ['jade', 'browser_copy', 'compile_src']
+
   grunt.registerTask 'compile_src', 'Compile all files from src for browser.', ->
     done = @async()
-    source_dir = path.join root_path, 'src'
     dest_dir  = path.join browser_result_dir, 'js'
-    commands.compile_src 'clinch_demo', source_dir, dest_dir, done
+    commands.compile_src 'clinch_demo', root_path, dest_dir, done
 
 
   grunt.registerTask 'browser_copy', 'Copy all staff for browser.', ->

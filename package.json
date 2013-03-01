@@ -16,7 +16,7 @@
   "devDependencies": {
     "mocha": "~1.8.1",
     "chai": "~1.5.0",
-    "clinch": "~0.1.1",
+    "clinch": "*",
     "grunt": "~0.4.0",
     "fs-extra": "*",
     "coffee-script": "*",
