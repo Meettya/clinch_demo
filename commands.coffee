@@ -88,6 +88,13 @@ compile_src = (bundle_name, root_path, result_dir, cb) ->
 
 ###
 This is node.js version of bash gh-pages updater, now in color! :)
+Before use it create gh-pages brunch first
+
+git checkout --orphan gh-pages
+git commit -am'* first gh-pages commit'
+
+than return to master
+
 ###
 update_gh_pages = (document_directory, gh_pages_branch, main_cb) ->
 
