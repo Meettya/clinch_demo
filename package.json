@@ -1,0 +1,32 @@
+{
+  "name": "clinch_demo",
+  "version": "0.0.1",
+  "description": "Demo for clinch",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "gitHead": "d2b3f7a9518a9513fb925270113f6984afe700ea",
+  "dependencies": {
+    "sprintf": "~0.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.8.1",
+    "chai": "~1.5.0",
+    "clinch": "*",
+    "grunt": "~0.4.0",
+    "fs-extra": "*",
+    "coffee-script": "*",
+    "express": "*",
+    "eco": "*",
+    "stylus": "*",
+    "jade": "*",
+    "lodash": "*",
+    "livereload": "git://github.com/sebv/node-livereload.git#livereload2",
+    "ncp": "~0.4.0",
+    "async": "*"
+  }
+}
