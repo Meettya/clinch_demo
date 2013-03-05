@@ -46,8 +46,8 @@
     <!--head.js loader--><script type="text/javascript">
 (function() {
 
-  head.js({
-    clinch_demo: "js/printer.js?" + (+new Date())
+  head.js('vendor/runtime.min.js', {
+    clinch_demo: "js/greater.js?" + (+new Date())
   });
 
 }).call(this);
@@ -67,9 +67,11 @@
 
   head.ready("clinch_demo", function() {
     return $(function() {
-      var printer, res;
-      printer = clinch_demo.main.printer;
-      res = printer('Mr. %s have acount #%010s with $%.2f', 'Jonh Smith', 4477, 788.22798798);
+      var greater, res;
+      greater = clinch_demo.main.greater;
+      res = greater({
+        name: 'Bender'
+      });
       return show_data(res);
     });
   });
@@ -77,17 +79,17 @@
 }).call(this);
 </script>
     <div class="container">
-      <h1>Printer Example</h1>
+      <h1>Greater Example</h1>
       <div class="span8">
-        <h4>Пример использования printf функции</h4>
+        <h4>Пример функции, использующей шаблон jade</h4>
         <p>Подгрузив на страницу собранный с помощью  <strong>clinch</strong> бандл, можно извлечь из него нужную нам функцию так:</p>
-        <pre class="prettyprint">{printer} = clinch_demo.main</pre>
+        <pre class="prettyprint">{greater} = clinch_demo.main</pre>
         <p>
            
           Далее просто используем ее для вывода информации
         </p>
         <div class="printer_code">
-          <pre class="prettyprint">printer 'Mr. %s have acount #%010s with $%.2f', 'Jonh Smith' , 4477, 788.22798798</pre>
+          <pre class="prettyprint">greater name : 'Bender'</pre>
         </div>
         <p>
            

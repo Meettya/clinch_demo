@@ -16,6 +16,8 @@ async         = require 'async'
 Clinch      = require 'clinch'
 packer = new Clinch()
 
+{get_pack_config} = require './pack_configurator'
+
 _ = require 'lodash'
 
 ###
@@ -38,21 +40,6 @@ Generate array of files from directory, selected on filter as RegExp
 make_files_list = (in_dir, filter_re) ->
   for file in fs.readdirSync in_dir when file.match filter_re
     path.join in_dir, file 
-
-get_pack_config = (root_path, filename) ->
-
-  switch filename
-    when 'printer'
-      bundle : 
-        main : path.join root_path, "src", filename
-    when 'formatter'
-      bundle : 
-        main : path.join root_path, "src", filename
-      replacement :
-        util : path.join root_path, "web_modules", "util_shim"
-
-    else
-      throw Error "dont know #{filename} settings"
 
 compile_jade = (source_dir, result_dir, cb) ->
   files = make_files_list source_dir, /\.jade$/
@@ -77,7 +64,7 @@ compile_src = (bundle_name, root_path, result_dir, cb) ->
     do (file) ->
       filename = path.basename file, '.coffee'
 
-      pack_config = get_pack_config root_path, filename
+      pack_config = get_pack_config filename
 
       packer.buldPackage bundle_name, pack_config, (err, data) ->
         throw err if err?
