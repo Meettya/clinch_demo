@@ -1,0 +1,59 @@
+extends includes/layout
+
+block content
+
+  // only head.js needed at first
+  script(src='vendor/head.load-0.99.min.js')
+
+  //head.js loader
+  :coffeescript
+    head.js 'vendor/handlebars.runtime.js',
+      { clinch_demo : "js/hb_greater.js?#{+new Date()}" }
+
+  :coffeescript
+
+    # to prettify our per-line explanation
+    $ -> prettyPrint()
+
+    show_data = (result) ->
+      $(".printer_result").children().text JSON.stringify result, null, 2
+      prettyPrint()
+      null
+
+    head.ready "clinch_demo", ->
+      $ -> 
+         {greater} = clinch_demo.main
+         res = greater name : 'Bender'
+         show_data res
+
+  div.container
+    h1 Greater Example (with Handlebars engine)
+
+    div.span8
+      h4 Пример функции, использующей шаблон Handlebars
+      p
+        | Подгрузив на страницу собранный с помощью  
+        strong clinch
+        |  бандл, можно извлечь из него нужную нам функцию так:
+
+      pre.prettyprint {greater} = clinch_demo.main
+
+      p 
+        | Далее просто используем ее для вывода информации
+
+      div.printer_code
+        pre.prettyprint greater name : 'Bender'
+
+      p 
+        | Эта функция даст нам вот такой результат (сформировано на клиенте)
+
+      div.printer_result
+        pre.prettyprint
+
+
+        
+
+
+
+
+

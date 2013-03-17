@@ -9,14 +9,13 @@
   "repository": "",
   "author": "",
   "license": "MIT",
-  "gitHead": "d2b3f7a9518a9513fb925270113f6984afe700ea",
   "dependencies": {
+    "clinch": "*",
     "sprintf": "~0.1.1"
   },
   "devDependencies": {
     "mocha": "~1.8.1",
     "chai": "~1.5.0",
-    "clinch": "*",
     "grunt": "~0.4.0",
     "fs-extra": "*",
     "coffee-script": "*",
@@ -27,6 +26,7 @@
     "lodash": "*",
     "livereload": "git://github.com/sebv/node-livereload.git#livereload2",
     "ncp": "~0.4.0",
-    "async": "*"
+    "async": "*",
+    "handlebars": "~1.0.10"
   }
 }

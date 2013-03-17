@@ -23,6 +23,9 @@ get_pack_config = (filename) ->
       replacement :
         fs : path.join root_path, "web_modules", 'noops'
         jade : path.join root_path, "web_modules", 'noops'
+    when 'hb_greater'
+      bundle : 
+        main : path.join root_path, "src", filename
 
     else
       throw Error "dont know |#{filename}| settings"

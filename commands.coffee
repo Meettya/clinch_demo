@@ -3,7 +3,7 @@ This is command library
 
 to wipe out Gruntfile from realization 
 ###
-
+async         = require 'async'
 path          = require 'path'
 fs            = require 'fs-extra'
 {spawn, exec} = require 'child_process'
@@ -11,10 +11,16 @@ fs            = require 'fs-extra'
 {ncp}   = require 'ncp'
 ncp.limit = 16
 
-async         = require 'async'
+# to handle Handlebars add-on
+Handlebars  = require 'handlebars'
 
-Clinch      = require 'clinch'
-packer = new Clinch()
+Clinch = require 'clinch'
+packer = new Clinch
+
+# register Handlebars processor
+packer.registerProcessor '.handlebars', (data, filename, cb) ->
+  content = Handlebars.precompile data
+  cb null, "module.exports = #{content}"
 
 {get_pack_config} = require './pack_configurator'
 

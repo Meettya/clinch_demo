@@ -10,9 +10,17 @@ util        = require 'util'
 livereload  = require 'livereload2'
 Clinch      = require 'clinch'
 
+# to handle Handlebars add-on
+Handlebars  = require 'handlebars'
+
 {get_pack_config} = require './pack_configurator'
 
-packer = new Clinch()
+packer = new Clinch
+
+# register Handlebars processor
+packer.registerProcessor '.handlebars', (data, filename, cb) ->
+  content = Handlebars.precompile data
+  cb null, "module.exports = #{content}"
 
 ###
 This is error handlers
