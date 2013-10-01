@@ -15,7 +15,7 @@ ncp.limit = 16
 Handlebars  = require 'handlebars'
 
 Clinch = require 'clinch'
-packer = new Clinch
+packer = new Clinch runtime : on
 
 # register Handlebars processor
 packer.registerProcessor '.handlebars', (data, filename, cb) ->

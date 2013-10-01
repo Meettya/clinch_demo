@@ -15,7 +15,7 @@ Handlebars  = require 'handlebars'
 
 {get_pack_config} = require './pack_configurator'
 
-packer = new Clinch
+packer = new Clinch runtime : on
 
 # register Handlebars processor
 packer.registerProcessor '.handlebars', (data, filename, cb) ->

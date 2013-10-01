@@ -15,16 +15,64 @@ block content
     # to prettify our per-line explanation
     $ -> prettyPrint()
 
-    show_data = (result) ->
-      $(".printer_result").children().text JSON.stringify result, null, 2
+    show_data = (place, result) ->
+      $(place).children().text JSON.stringify result, null, 2
       prettyPrint()
+      null
+
+    append_data = (place, result) ->
+      $(place).append result
       null
 
     head.ready "clinch_demo", ->
       $ -> 
          {greater} = clinch_demo.main
          res = greater name : 'Bender'
-         show_data res
+         show_data ".printer_result", res
+
+      $ ->
+        {example1} = clinch_demo.main
+        data = 
+          name : "Alan"
+          hometown : "Somewhere, TX"
+          kids : [
+            { name : "Jimmy", age : 12}
+            { name : "Sally", age : 4 }
+            ]
+        res = example1 data
+
+        append_data ".example1_result", res
+
+      $ ->
+        {example2} = clinch_demo.main
+        data = 
+          posts: [{url: "/hello-world", body: "Hello World!"}]
+        res = example2 data
+
+        append_data ".example2_result", res
+
+      $ ->
+        {example3} = clinch_demo.main
+        data = 
+          people  : [
+            { name: "Alan", id: 1 },
+            { name: "Yehuda", id: 2 }
+          ]
+        res = example3 data
+
+        append_data ".example3_result", res
+
+      $ ->
+        {example4} = clinch_demo.main
+        data = 
+          items: [
+            {name: "Handlebars", emotion: "love"}
+            {name: "Mustache", emotion: "enjoy"}
+            {name: "Ember", emotion: "want to learn"}
+          ]
+        res = example4 data
+
+        append_data ".example4_result", res
 
   div.container
     h1 Greater Example (with Handlebars engine)
@@ -50,10 +98,24 @@ block content
       div.printer_result
         pre.prettyprint
 
+    div.span8
+      h4 Еще один пример из описания Hb
 
-        
+      div.example1_result
 
+    div.span8
+      h4 Еще один пример из описания Hb
 
+      div.example2_result
 
+    div.span8
+      h4 Еще один пример из описания Hb
+
+      div.example3_result
+
+    div.span8
+      h4 Еще один пример из описания Hb
+
+      div.example4_result
 
 

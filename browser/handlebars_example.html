@@ -13,6 +13,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/prettify.css">
     <script src="vendor/prettify.js"></script>
+    <script src="vendor/clinch.runtime.js"></script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,7 +33,6 @@
     </div>
     <!-- add active toggler to navbar--><script type="text/javascript">
 (function() {
-
   $(function() {
     var page_path;
     page_path = /([^/]+)$/.exec(this.location.pathname);
@@ -46,7 +46,6 @@
     <script src="vendor/head.load-0.99.min.js"></script>
     <!--head.js loader--><script type="text/javascript">
 (function() {
-
   head.js('vendor/handlebars.runtime.js', {
     clinch_demo: "js/hb_greater.js?" + (+new Date())
   });
@@ -54,26 +53,101 @@
 }).call(this);
 </script><script type="text/javascript">
 (function() {
-  var show_data;
+  var append_data, show_data;
 
   $(function() {
     return prettyPrint();
   });
 
-  show_data = function(result) {
-    $(".printer_result").children().text(JSON.stringify(result, null, 2));
+  show_data = function(place, result) {
+    $(place).children().text(JSON.stringify(result, null, 2));
     prettyPrint();
     return null;
   };
 
+  append_data = function(place, result) {
+    $(place).append(result);
+    return null;
+  };
+
   head.ready("clinch_demo", function() {
-    return $(function() {
+    $(function() {
       var greater, res;
       greater = clinch_demo.main.greater;
       res = greater({
         name: 'Bender'
       });
-      return show_data(res);
+      return show_data(".printer_result", res);
+    });
+    $(function() {
+      var data, example1, res;
+      example1 = clinch_demo.main.example1;
+      data = {
+        name: "Alan",
+        hometown: "Somewhere, TX",
+        kids: [
+          {
+            name: "Jimmy",
+            age: 12
+          }, {
+            name: "Sally",
+            age: 4
+          }
+        ]
+      };
+      res = example1(data);
+      return append_data(".example1_result", res);
+    });
+    $(function() {
+      var data, example2, res;
+      example2 = clinch_demo.main.example2;
+      data = {
+        posts: [
+          {
+            url: "/hello-world",
+            body: "Hello World!"
+          }
+        ]
+      };
+      res = example2(data);
+      return append_data(".example2_result", res);
+    });
+    $(function() {
+      var data, example3, res;
+      example3 = clinch_demo.main.example3;
+      data = {
+        people: [
+          {
+            name: "Alan",
+            id: 1
+          }, {
+            name: "Yehuda",
+            id: 2
+          }
+        ]
+      };
+      res = example3(data);
+      return append_data(".example3_result", res);
+    });
+    return $(function() {
+      var data, example4, res;
+      example4 = clinch_demo.main.example4;
+      data = {
+        items: [
+          {
+            name: "Handlebars",
+            emotion: "love"
+          }, {
+            name: "Mustache",
+            emotion: "enjoy"
+          }, {
+            name: "Ember",
+            emotion: "want to learn"
+          }
+        ]
+      };
+      res = example4(data);
+      return append_data(".example4_result", res);
     });
   });
 
@@ -99,6 +173,22 @@
         <div class="printer_result">
           <pre class="prettyprint"></pre>
         </div>
+      </div>
+      <div class="span8">
+        <h4>Еще один пример из описания Hb</h4>
+        <div class="example1_result"></div>
+      </div>
+      <div class="span8">
+        <h4>Еще один пример из описания Hb</h4>
+        <div class="example2_result"></div>
+      </div>
+      <div class="span8">
+        <h4>Еще один пример из описания Hb</h4>
+        <div class="example3_result"></div>
+      </div>
+      <div class="span8">
+        <h4>Еще один пример из описания Hb</h4>
+        <div class="example4_result"></div>
       </div>
     </div>
   </body>
